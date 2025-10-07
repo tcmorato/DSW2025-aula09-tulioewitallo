@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-c4!uz0hwdmkk^p^q3!3g_x$b#7+&7_lv(j)0zvc3v92vztyml4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dsw2025-3-aula09.onrender.com']
+
 
 
 # Application definition
@@ -62,6 +63,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'servestatic.middleware.ServeStaticMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,7 +140,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS  = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS  = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
