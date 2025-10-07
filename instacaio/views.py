@@ -1,21 +1,25 @@
 from django.shortcuts import render, redirect
-
+from django.http import HttpRequest
 from instacaio.forms import PostForm
 from instacaio.models import Post
-
+from django.contrib.auth.decorators import login_required
 
 def inicio(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(aprovado = True)
     return render(request, 'inicio.html', {
         'posts': posts
     })
 
-# Create your views here.
-def criar_post(request):
+@login_required(login_url="/contas/login/")
+def criar_post(request: HttpRequest):
     if (request.method == "POST"):
         formulario = PostForm(request.POST, request.FILES)
         if (formulario.is_valid):
-            formulario.save()
+            post:Post = formulario.save(commit = False)
+            post.autor = request.user
+            if request.user.is_staff:
+                post.aprovado = True
+            post.save()
             return redirect("inicio")
     else:
         formulario = PostForm()
@@ -35,4 +39,4 @@ def signup(request):
             return redirect('inicio')
     else:
         form = UserCreationForm()
-    return render(request, 'contas/registrar.html', {'form': form})
+    return render(request, 'registration/registrar.html', {'form': form})

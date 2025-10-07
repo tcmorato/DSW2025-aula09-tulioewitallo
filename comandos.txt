@@ -70,7 +70,7 @@ python manage.py createsuperuser
 #####################
 # Inicia o servidor #
 #####################
-python manage.py runserver
+python manage.py runserver 6969
 # Pára o servidor (CTRL + C)
 
 

@@ -5,3 +5,7 @@ sqlparse==0.5.3
 tzdata==2025.2
 crispy-bootstrap5==2025.6
 django-crispy-forms==2.4
+django-allauth[socialaccount]
+requests
+pyjwt
+cryptography
