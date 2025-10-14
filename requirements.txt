@@ -9,4 +9,5 @@ django-allauth[socialaccount]
 requests
 pyjwt
 cryptography
-uvicorn 
+uvicorn
+servestatic
